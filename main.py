@@ -6,17 +6,28 @@
 # Imports
 import random
 
+def isNumber(n):
+    if n.isdigit() == True:
+        n = int(n)
+    else:
+        while n.isdigit() == False:
+            n = input("Error! Remember to type an integer number: ")
+        n = int(n)
+    return n
+
 def playGame(upperLimit):
     numberToGuess = random.randint(1, upperLimit)
     guessCount = 0
 
-    guess = int(input("Type your number: "))
+    guess = input("Type your number: ")
+    guess = isNumber(guess)
     while guess != numberToGuess:
-        print()
         guessCount += 1
+        print()        
         print("Guess count: " + str(guessCount))
-        print("Not the number, keep guessing")
+        print("Not the number. Keep guessing!")
         guess = int(input("Type your number: "))
+    guessCount += 1        
     print()
     print("Great! You guessed it in " + str(guessCount) + " attempts.")
         
@@ -34,7 +45,8 @@ def start():
         print()
 
         print("Pick your upper limit for your guessing game.")
-        upperLimit = int(input("Type your number: "))
+        upperLimit = input("Type your number: ")
+        upperLimit = isNumber(upperLimit)
         print()
         print("Got it! Now try to guess number between 1 to " + str(upperLimit) + ".")
         playGame(upperLimit)
@@ -43,11 +55,19 @@ def start():
         print("Do you want to play again?")
         playAgain = input("(Y or N): ")
         print()
-        if playAgain == "Y":
-            valid  = True
-        else:
-            print("Thanks for playing! See you next time!")
-            valid = False
+        while True:
+            if playAgain == "Y":                
+                valid  = True
+                break
+            elif playAgain == "N":
+                print("Thanks for playing! See you next time!")
+                print()
+                valid = False
+                quit()
+            else:
+                print("Error! Remeber to type (Y) to play again or (N) to quit.")
+                print("Do you want to play again?")
+                playAgain = input("(Y or N): ")
 
 # Start
 start()
