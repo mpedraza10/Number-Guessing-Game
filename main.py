@@ -6,6 +6,7 @@
 # Imports
 import random
 
+# Function to validate if an input is an integer number
 def isNumber(n):
     if n.isdigit() == True:
         n = int(n)
@@ -15,6 +16,7 @@ def isNumber(n):
         n = int(n)
     return n
 
+# Function play where you guess the number between the selected range
 def playGame(upperLimit):
     numberToGuess = random.randint(1, upperLimit)
     guessCount = 0
@@ -31,8 +33,7 @@ def playGame(upperLimit):
     print()
     print("Great! You guessed it in " + str(guessCount) + " attempts.")
         
-
-# Function where it starts
+# Function where it starts, here is the menu to select the range you want to play or quit the game 
 def start():
     valid = True
     while valid:
